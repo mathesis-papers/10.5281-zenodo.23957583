@@ -1,0 +1,592 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,longtable}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Curtz's denominator conjecture:\\OEIS A189733, revision 12, COMMENTS\\\large May 23, 2011}
+\author{Haobo Ma\\\small ChronoAI Pte Ltd, Singapore
+\and Wenlin Zhang\\\small National University of Singapore\\\small ChronoAI Pte Ltd, Singapore}
+\date{November 3, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove Paul Curtz's six-residue denominator conjecture in OEIS A189733,
+revision 12, COMMENTS (May 23, 2011), now in revision 36, FORMULA,
+with its convention that zero has denominator one.
+Following Gao's earlier generating-function proof, we derive exact values of
+the first row of the defining rational array. These values also prove the
+six-periodic numerator assertion, the denominator recurrence, and Barker's
+empirical generating function in the same entry. The same formulas settle
+Barker's recurrence and generating-function conjectures in A267068 and
+give the numerator identities in A278718. We also prove the full-array
+reflection and binomial-transform identity. The corresponding second-kind
+array yields A194767's denominator formulas and reciprocal sum, and corrects
+an index in its fourth-diagonal numerator identity. For the unsigned-seed
+array in A189731 and A242926, the same argument gives a Lucas-number formula
+and refutes the asserted prime-only integer ranks at the composite 705.
+An integer triangular transformation determines antidiagonal denominator lcms
+for arbitrary rational seeds.
+\end{abstract}
+
+\section{The array and the conjecture}
+Curtz's conjecture in OEIS A189733, revision 12, COMMENTS, posted
+May 23, 2011~\cite{curtz}, specifies the reduced denominators of a rational
+difference array. Theorem~\ref{thm:main} establishes all six residue formulas.
+The conjecture moved to FORMULA in revision 13 and remains there in
+revision 36. Gao's earlier proof, posted September 23, 2026~\cite{gao},
+already establishes these formulas and their denominator recurrence and
+generating function. We explain that argument and deduce the closely related
+numerator and quotient identities in A278718 and A267068~\cite{numerators,quotients}.
+
+Write $b_n=B(0,n)$ and $a_n=\operatorname{den}(b_n)$, where denominators are
+positive and fractions are reduced, including $\operatorname{den}(0)=1$.
+The upper triangle of the source array is specified by
+\[
+ B(m,m)=0,\qquad B(m,m+1)=\frac{(-1)^m}{m+1},
+\]
+and $B(m,n)=B(m,n-1)+B(m+1,n-1)$ when $n\ge m+2$.
+The diagonal and first superdiagonal take precedence over the recurrence,
+as in the entry's Maple and Mathematica definitions.
+Thus $T(m,d)=B(m,m+d)$ satisfies
+\begin{equation}\label{eq:triangle}
+ T(m,0)=0,\quad T(m,1)=\frac{(-1)^m}{m+1},\quad
+ T(m,d+2)=T(m,d+1)+T(m+1,d).
+\end{equation}
+These equations determine $T$ by induction on $d$.
+
+\begin{theorem}\label{thm:main}
+For every integer $k\ge0$,
+\begin{align}\label{eq:row}
+ (b_{6k},b_{6k+1},b_{6k+2},b_{6k+3},b_{6k+4},b_{6k+5})
+ &=\left(0,\frac1{3k+1},\frac1{2k+1},\frac1{3k+2},0,-\frac1{6k+6}\right),\\
+\label{eq:den}
+ (a_{6k},a_{6k+1},a_{6k+2},a_{6k+3},a_{6k+4},a_{6k+5})
+ &=(1,3k+1,2k+1,3k+2,1,6k+6).
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Define polynomials $Q_0(t)=0$, $Q_1(t)=1$, and
+$Q_{d+2}(t)=Q_{d+1}(t)-tQ_d(t)$. Coefficientwise integration is the rational
+linear operation $\int_0^1 t^j\,dt=1/(j+1)$. Equation~\eqref{eq:triangle}
+gives, by induction on $d$,
+\begin{equation}\label{eq:moment}
+ T(m,d)=(-1)^m\int_0^1 t^m Q_d(t)\,dt.
+\end{equation}
+Indeed, the values for $d=0,1$ agree. Multiplying the polynomial recurrence
+by $(-1)^m t^m$ and integrating gives the same recursion
+as~\eqref{eq:triangle}, since $(-1)^{m+1}=-(-1)^m$.
+The polynomial recurrence also gives the formal power series identity
+\[
+ \sum_{d\ge0}Q_d(t)z^d=\frac{z}{1-z+tz^2}.
+\]
+Integrating each coefficient in $t$ and setting $m=0$ in~\eqref{eq:moment}
+therefore yields
+\begin{align}\label{eq:log}
+ F(z):=\sum_{n\ge0}b_nz^n
+ &=\frac1z\left(\log(1-z+z^2)-\log(1-z)\right)\notag\\
+ &=\frac1z\left(\log(1+z^3)-\log(1-z^2)\right).
+\end{align}
+For the first equality, differentiation of $\log(1-z+tz^2)$ with respect
+to $t$ gives $z^2/(1-z+tz^2)$. This is a formal calculation in
+$\mathbb{Q}[t][[z]]$, so integration involves a polynomial at each degree
+and requires no convergence assumption. The second equality uses
+$(1-z+z^2)(1+z)=1+z^3$ and $(1-z)(1+z)=1-z^2$.
+Both logarithms have zero constant term and their difference is divisible
+by $z$, so the factor $1/z$ is well defined.
+
+Expanding the two logarithms in~\eqref{eq:log} gives
+\[
+ F(z)=\sum_{j\ge1}\frac{(-1)^{j+1}}{j}z^{3j-1}
+       +\sum_{j\ge1}\frac1j z^{2j-1}.
+\]
+Consequently, for $n\ge0$,
+\begin{equation}\label{eq:coeff}
+ (n+1)b_n=
+ 2\,\mathbf{1}_{2\mid n+1}
+ +\begin{cases}3(-1)^{(n+1)/3+1},&3\mid n+1,\\0,&3\nmid n+1.\end{cases}
+\end{equation}
+For $n\bmod6=0,1,2,3,4,5$, the right-hand side is respectively
+$0,2,3,2,0,-1$. This proves~\eqref{eq:row}. Each nonzero value in that
+equation has numerator $1$ or $-1$ and a strictly positive integer
+denominator, even when $k=0$. Taking reduced denominators, with denominator
+one for the two zero values, proves~\eqref{eq:den}.
+\end{proof}
+
+\section{The other assertions in A189733}
+\begin{corollary}\label{cor:siblings}
+The reduced numerators of $b_n$ repeat the block $(0,1,1,1,0,-1)$, with
+least period six. For $n\ge12$,
+\begin{equation}\label{eq:recurrence}
+ a_n=2a_{n-6}-a_{n-12}.
+\end{equation}
+Moreover, the ordinary generating function of the denominator sequence is
+\begin{equation}\label{eq:gf}
+ \sum_{n\ge0}a_nz^n=
+ \frac{1+z+z^2+2z^3+z^4+6z^5-z^6+2z^7+z^8+z^9-z^{10}}
+ {(1-z^6)^2}.
+\end{equation}
+This is the generating function recorded as empirical by Colin Barker on
+November 11, 2016, in A189733's FORMULA field.
+\end{corollary}
+\begin{proof}
+The numerator statement follows from~\eqref{eq:row}; the value $-1$ occurs
+exactly at indices congruent to $5$ modulo $6$, so every positive period
+is a multiple of six. Each of the six subsequences in~\eqref{eq:den}
+is affine in $k$, which proves~\eqref{eq:recurrence} for its stated range.
+For a direct calculation of the generating function, let
+\[
+ (u_0,\ldots,u_5)=(1,1,1,2,1,6),\qquad
+ (v_0,\ldots,v_5)=(0,3,2,3,0,6).
+\]
+Then $a_{6k+r}=u_r+kv_r$, and summing the geometric series and its
+derivative gives
+\[
+ \sum_{n\ge0}a_nz^n=
+ \sum_{r=0}^5z^r\left(\frac{u_r}{1-z^6}
+              +\frac{v_rz^6}{(1-z^6)^2}\right).
+\]
+Expansion of the numerator gives~\eqref{eq:gf}. Finally,
+$1-z^6=(1-z)(1+z)(1-z+z^2)(1+z+z^2)$, matching Barker's denominator.
+\end{proof}
+
+For completeness, the lower-triangular branch in the source programs is
+$B(m,n)=B(m-1,n+1)-B(m-1,n)$ for $m>n$. It determines the remaining
+entries by increasing $m$. This branch is needed for the next assertion,
+but not for Theorem~\ref{thm:main}.
+
+\begin{corollary}\label{cor:binomial}
+For every $n\ge0$,
+\begin{equation}\label{eq:binomial}
+ B(n,0)=\sum_{j=0}^n(-1)^{n-j}\binom nj b_j=(-1)^{n+1}b_n.
+\end{equation}
+\end{corollary}
+\begin{proof}
+First, $B(m,n)=(-1)^{m+n+1}B(n,m)$. To prove this when $m>n$,
+define the lower entries by the expression on the right, retaining the
+upper triangle. For $m=n+1$ this agrees with
+$B(n,n+1)-B(n,n)=B(n,n+1)$. For $m\ge n+2$, put
+$s=(-1)^{m+n+1}$. The upper recurrence gives
+\[
+ B(m-1,n+1)-B(m-1,n)
+ =s\bigl(B(n+1,m-1)+B(n,m-1)\bigr)=sB(n,m).
+\]
+Thus these entries satisfy the lower branch, and its uniqueness proves
+the reflection identity. The diagonal case is zero on both sides.
+
+The difference identity $B(m+1,n)=B(m,n+1)-B(m,n)$ holds for all
+$m,n\ge0$. Below the diagonal it is the defining branch; above it this
+is the rearranged upper recurrence. At $n=m$ it follows from
+$B(m+1,m)=B(m,m+1)$, and at $n=m+1$ from
+$B(m,m+2)=B(m,m+1)+B(m+1,m+1)$. Iterating this difference identity,
+or using induction and Pascal's identity, gives
+\[
+ B(m,n)=\sum_{j=0}^m(-1)^{m-j}\binom mj B(0,n+j).
+\]
+Set $n=0$ and use reflection to obtain~\eqref{eq:binomial}.
+\end{proof}
+
+\begin{corollary}\label{cor:allentries}
+For $m\ge0$ and $d\ge1$,
+\begin{equation}\label{eq:allentries}
+ B(m,m+d)=(-1)^m\sum_{j=0}^{\lfloor(d-1)/2\rfloor}
+ \frac{(-1)^j\binom{d-1-j}{j}}{m+j+1}.
+\end{equation}
+Together with $B(m,m)=0$ and
+$B(m,n)=(-1)^{m+n+1}B(n,m)$, this determines the whole square array.
+\end{corollary}
+\begin{proof}
+Pascal's identity shows that
+$Q_d(t)=\sum_{j=0}^{\lfloor(d-1)/2\rfloor}(-1)^j\binom{d-1-j}{j}t^j$
+has initial values $Q_1=Q_2=1$ and satisfies
+$Q_{d+2}=Q_{d+1}-tQ_d$. Substitution in~\eqref{eq:moment} gives
+\eqref{eq:allentries}; reflection was proved in Corollary~\ref{cor:binomial}.
+The case $m=0$ is Gao's finite-sum formula~\cite{gao}.
+\end{proof}
+
+\section{The linked numerator and quotient sequences}
+Write $p_n=\operatorname{num}(b_n)$, the sequence A278718~\cite{numerators},
+and $c_n=(n+1)/a_n$, the sequence A267068~\cite{quotients}.
+These entries refer to A189733 even though its current CROSSREFS field is empty.
+
+\begin{corollary}\label{cor:numerators}
+For all $n\ge0$,
+\begin{align}\label{eq:numgf}
+ \sum_{n\ge0}p_nz^n
+ &=\frac{z+z^2+z^3-z^5}{1-z^6}
+ =\frac{z(1+z^2-z^3)}{(1-z)(1-z+z^2)(1+z+z^2)},\\
+\label{eq:numfloor}
+ p_n&=\frac{1+(-1)^{\lfloor(n-1)/3\rfloor}}2
+       -\left\lfloor\frac{n+1}{6}\right\rfloor
+       +\left\lfloor\frac n6\right\rfloor.
+\end{align}
+For $n\ge5$,
+\begin{equation}\label{eq:numrec}
+ p_n=p_{n-1}-p_{n-2}+p_{n-3}-p_{n-4}+p_{n-5}.
+\end{equation}
+These are A278718's generating function and Hurt's formulas dated
+October 3, 2017.
+\end{corollary}
+\begin{proof}
+Sum the period block from Corollary~\ref{cor:siblings} to obtain the first
+fraction in~\eqref{eq:numgf}; cancel $1+z$ to obtain the second.
+Its denominator is $1-z+z^2-z^3+z^4-z^5$, and its numerator has degree four,
+which proves~\eqref{eq:numrec} for $n\ge5$. In~\eqref{eq:numfloor}, write
+$n=6k+r$, $0\le r<6$. The first term has values $(0,1,1,1,0,0)$,
+while the difference of floors subtracts one exactly when $r=5$.
+This gives the required block, including $n=0$.
+\end{proof}
+
+\begin{corollary}\label{cor:quotients}
+For every $k\ge0$,
+\begin{equation}\label{eq:quotient}
+ (c_{6k},\ldots,c_{6k+5})=(6k+1,2,3,2,6k+5,1).
+\end{equation}
+In particular, $c_n=2c_{n-6}-c_{n-12}$ for $n\ge12$, and
+\begin{equation}\label{eq:quotientgf}
+ \sum_{n\ge0}c_nz^n=
+ \frac{\begin{gathered}1+2z+3z^2+2z^3+5z^4+z^5\\
+       {}+5z^6-2z^7-3z^8-2z^9+z^{10}-z^{11}\end{gathered}}
+      {(1-z^6)^2}.
+\end{equation}
+Thus both conjectures attributed to Barker on January 10, 2016, in
+A267068 are true. Its other three FORMULA assertions hold, with the
+OEIS offsets of the cited sequences~\cite{auxiliary}:
+\begin{align}\label{eq:quotientlinks}
+ c_{2n+1}&=\mathrm{A130196}(n+1),\notag\\
+ c_{\mathrm{A047245}(n+1)}&=\mathrm{A052901}(n+2),\\
+ c_{3n}+c_{3n+1}+c_{3n+2}&=\mathrm{A047238}(n+3)\qquad(n\ge0).\notag
+\end{align}
+\end{corollary}
+\begin{proof}
+Equation~\eqref{eq:quotient} follows by dividing $n+1$ by~\eqref{eq:den}.
+Its six affine subsequences have intercepts $(1,2,3,2,5,1)$ and slopes
+$(6,0,0,0,6,0)$. The same geometric-series calculation as in
+Corollary~\ref{cor:siblings} proves the recurrence and~\eqref{eq:quotientgf}.
+The odd subsequence repeats $(2,2,1)$, which is A130196 starting at index one.
+For $n=3k+r$, $0\le r<3$, A047245$(n+1)=6k+r+1$ and the corresponding
+values of $c$ are $(2,3,2)$, exactly A052901$(n+2)$.
+Finally, the sums of consecutive triples are $6k+6$ at $n=2k$ and
+$6k+8$ at $n=2k+1$. A047238, indexed from one, lists
+$0,2,6,8,12,14,\ldots$; its value at $n+3$ is precisely that pair of formulas.
+\end{proof}
+
+\section{The second-kind companion: A194767}
+The first-kind/second-kind correspondence is $b_n\mapsto 2b_{n+1}-b_n$
+in the OEIS account of autosequences~\cite{autosequence}.
+For the full difference array put
+\[
+ C(m,n)=2B(m,n+1)-B(m,n).
+\]
+It satisfies the same difference identity as $B$, with
+$C(m,m)=2(-1)^m/(m+1)$ and $C(m,m+1)=(-1)^m/(m+1)$.
+These are the boundary values of the second-kind array displayed in
+A194767~\cite{secondkind}; the upper recurrence and lower difference branch
+uniquely determine it from these two diagonals.
+
+\begin{corollary}\label{cor:secondkind}
+Let $d_m=\operatorname{den}(C(m,m+3))$ and $g_m=\gcd(3,m+2)$.
+For every $m\ge0$,
+\begin{equation}\label{eq:secondkind}
+ C(m,m+3)=\frac{(-1)^{m+1}(2m+1)}{(m+1)(m+2)},\qquad
+ d_m=\frac{(m+1)(m+2)}{g_m}.
+\end{equation}
+Consequently, for $k\ge0$,
+\begin{align}\label{eq:secondresidues}
+ (d_{3k},d_{3k+1},d_{3k+2})
+ &=\bigl((3k+1)(3k+2),(k+1)(3k+2),3(k+1)(3k+4)\bigr),\\
+\label{eq:secondgf}
+ \sum_{m\ge0}d_mz^m
+ &=\frac{2(1+z+6z^2+7z^3+2z^4+3z^5+z^6)}{(1-z^3)^3}.
+\end{align}
+The two shifted-sequence formulas in A194767 also hold:
+\[
+ d_m=(m+1)\mathrm{A051176}(m+2),\qquad
+ d_{m+2}=2\mathrm{A306368}(m)\quad(m\ge0).
+\]
+Its fourth-diagonal numerator formula requires a shift:
+\begin{equation}\label{eq:indexcorrection}
+ C(m,m+3)=\frac{(-1)^{m+1}\mathrm{A146535}(m+1)}{d_m},
+ \quad\text{not }\frac{(-1)^{m+1}\mathrm{A146535}(m)}{d_m}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+The polynomials $Q_3=1-t$ and $Q_4=1-2t$ in~\eqref{eq:moment} give
+$C(m,m+3)=(-1)^m\int_0^1t^m(1-3t)\,dt$, proving the first formula.
+Since $\gcd(2m+1,m+1)=1$ and
+$\gcd(2m+1,m+2)=\gcd(3,m+2)$, reduction gives $d_m$.
+Split $m$ into its three residue classes for~\eqref{eq:secondresidues}.
+Their quadratic polynomials are $9k^2+9k+2$, $3k^2+5k+2$, and
+$9k^2+21k+12$. Summing with
+$\sum kq^k=q/(1-q)^2$ and
+$\sum k^2q^k=q(1+q)/(1-q)^3$ gives~\eqref{eq:secondgf}.
+
+The cited definitions~\cite{secondauxiliary} are
+A051176$(r)=r/\gcd(r,3)$ and A306368$(r)$ equal to the reduced numerator of
+$(r+3)(r+4)/((r+1)(r+2))$.
+Here the gcd of the two products is $2\gcd(3,r+4)$: a common prime divides
+one of the differences $1,2,3$; its $2$-adic valuation is one, and a factor
+three occurs precisely at $r\equiv2\pmod3$, with valuation one.
+These formulas prove both sequence identifications.
+A146535$(r)$, indexed from $r=1$, is the reduced numerator of $(2r-1)/3$.
+Thus A146535$(m+1)=(2m+1)/g_m$, proving~\eqref{eq:indexcorrection}.
+The unshifted formula is already false at $m=2$: its unsigned numerator is
+A146535$(2)=1$, whereas $C(2,5)=-5/12$.
+\end{proof}
+
+The remaining diagonal descriptions in A194767 follow as well:
+\[
+ C(m,m)=\frac{\epsilon_m}{\mathrm{A026741}(m+1)},\qquad
+ C(m,m+1)=\frac{(-1)^m}{m+1},\qquad
+ C(m,m+2)=\frac{(-1)^{m+1}\mathrm{A026741}(m)}{\mathrm{A045896}(m)},
+\]
+where $\epsilon_m=2$ for even $m$ and $-1$ for odd $m$.
+Indeed, the third expression before reduction is
+$(-1)^{m+1}m/((m+1)(m+2))$ by~\eqref{eq:moment};
+A026741$(m)=m$ for odd $m$ and $m/2$ for even $m$, and A045896$(m)$
+is the reduced denominator of that fraction~\cite{secondauxiliary}.
+At $m=0$ its numerator is zero and denominator one. These formulas and
+Corollary~\ref{cor:allentries} also reproduce the displayed second-kind array.
+
+\begin{corollary}\label{cor:reciprocals}
+The reciprocal sum stated in A194767 is
+\[
+ \sum_{m\ge0}\frac1{d_m}=1+\log3-\frac{\pi}{3\sqrt3}.
+\]
+\end{corollary}
+\begin{proof}
+Because $g_m=1+2\mathbf1_{m\equiv1\ (\mathrm{mod}\ 3)}$, telescoping gives
+\begin{align*}
+ \sum_{m\ge0}\frac1{d_m}
+ &=1+2\sum_{k\ge0}\left(\frac1{3k+2}-\frac1{3k+3}\right)\\
+ &=1+2\int_0^1\frac{x}{1+x+x^2}\,dx
+ =1+\log3-\frac{\pi}{3\sqrt3}.
+\end{align*}
+The summands represented by $x^{3k+1}(1-x)$ are nonnegative, justifying
+termwise integration. An antiderivative is
+$\tfrac12\log(x^2+x+1)-\tfrac1{\sqrt3}\arctan((2x+1)/\sqrt3)$.
+\end{proof}
+
+\section{The unsigned seed: A189731 and A242926}
+The related entries A189731 and A242926~\cite{unsigned} use the same array
+recurrence with the unsigned boundary $U(m,m+1)=1/(m+1)$ and zero diagonal.
+Write $u_n=U(0,n)$ and let $L_0=2$, $L_1=1$, $L_{n+2}=L_{n+1}+L_n$
+be the Lucas numbers.
+
+\begin{corollary}\label{cor:unsigned}
+For $n\ge0$,
+\begin{equation}\label{eq:lucas}
+ u_n=\frac{L_{n+1}-1}{n+1}.
+\end{equation}
+For $r\ge0$, the odd-index reduced numerator is $\mathrm{A175385}(r+1)$
+and the reduced denominator is $\mathrm{A175386}(r+1)$~\cite{unsignedbisections}.
+In particular, A242926's formula with A175386$(r)$ requires this shift.
+The inverse-binomial identity is
+\[
+ \sum_{j=0}^n(-1)^{n-j}\binom nj u_j=(-1)^{n+1}u_n.
+\]
+The upper antidiagonal assertion in A242926 is
+\[
+ \sum_{m=0}^r U(m,2r+1-m)=u_{2r+2}\qquad(r\ge0).
+\]
+\end{corollary}
+\begin{proof}
+Replace $-t$ by $t$ in the polynomial argument of Theorem~\ref{thm:main}.
+It gives
+\[
+ \sum_{n\ge0}u_nz^n=\frac{\log(1-z)-\log(1-z-z^2)}z.
+\]
+The derivative of $-\log(1-z-z^2)$ is
+$(1+2z)/(1-z-z^2)=\sum_{n\ge0}L_{n+1}z^n$ by the Lucas recurrence.
+Comparing coefficients proves~\eqref{eq:lucas}. This is the Lucas expression
+attributed to R. Stephan in A242926 (May 20, 2014), and to J. Jasinski
+in A189731 (October 21, 2022); the parameter in A189731's displayed
+$(L_n-1)/n$ starts at one, whereas our row index starts at zero.
+The same unsigned moment argument gives
+\[
+ u_{2r+1}=\sum_{j=0}^r\frac{\binom{2r-j}{j}}{j+1}
+ =\sum_{i=1}^{r+1}\frac{\binom{2(r+1)-i-1}{i-1}}i,
+\]
+which is the defining fraction for A175385 and A175386 at $r+1$.
+At $r=1$, A242926$(3)=2$ but A175386$(1)=1$, verifying the unshifted
+identity's failure. The reflection and difference proof of
+Corollary~\ref{cor:binomial} applies unchanged to any first-superdiagonal
+seed, yielding the inverse-binomial identity.
+Finally, iterating the upper recurrence along the antidiagonal telescopes
+$u_{2r+2}$ into the displayed sum; its last remainder is
+$U(r+1,r+1)=0$.
+\end{proof}
+
+\begin{corollary}\label{cor:primecounterexample}
+The assertion in A242926, COMMENTS, that the positive integer entries
+of the unsigned first row occur at prime ranks is false.
+At the zero-based row index $704$ the entry $u_{704}$ is a positive integer,
+although its one-based rank $705=3\cdot5\cdot47$ is composite.
+\end{corollary}
+\begin{proof}
+Put $M=\left(\begin{smallmatrix}1&1\\1&0\end{smallmatrix}\right)$, so
+$\operatorname{tr}(M^n)=L_n$. The following residues modulo 705 are a
+finite modular certificate, obtained by successive squaring:
+\[
+ M^{64}\equiv\begin{pmatrix}565&423\\423&142\end{pmatrix},\quad
+ M^{128}\equiv\begin{pmatrix}424&141\\141&283\end{pmatrix},\quad
+ M^{512}\equiv\begin{pmatrix}283&564\\564&424\end{pmatrix}.
+\]
+As $705=1+64+128+512$, their product with $M$ gives
+\[
+ M^{705}\equiv\begin{pmatrix}283&565\\565&423\end{pmatrix}\pmod{705},
+ \qquad L_{705}\equiv283+423\equiv1\pmod{705}.
+\]
+Equation~\eqref{eq:lucas} proves the counterexample. The integer 705 is
+also the first standard Lucas pseudoprime listed in A005845~\cite{pseudoprimes}.
+\end{proof}
+
+\begin{corollary}\label{cor:antidiagonallcm}
+For either zero-diagonal array $V=B$ or $V=U$, the least common multiple
+of the reduced denominators on the strict upper antidiagonal $m+n=s$ is
+\[
+ \operatorname{lcm}_{0\le m<s-m}\operatorname{den}(V(m,s-m))
+ =\operatorname{lcm}(1,\ldots,\lfloor(s+1)/2\rfloor)
+ =\mathrm{A139550}(s+1),\qquad s\ge0,
+\]
+with the lcm of an empty family defined as one. This proves the
+antidiagonal-lcm assertion in A242926, with its antidiagonals counted from one.
+\end{corollary}
+\begin{proof}
+More generally, let the first-superdiagonal seeds be arbitrary rationals
+$w_m=V(m,m+1)$, and keep the diagonal zero.
+The recurrence and Pascal's identity give
+\[
+ V(m,m+d)=\sum_{j=0}^{\lfloor(d-1)/2\rfloor}
+                  \binom{d-1-j}{j}w_{m+j}\quad(d\ge1).
+\]
+For a fixed $s\ge1$, put $h=\lfloor(s+1)/2\rfloor$.
+The $h$ antidiagonal entries are therefore an upper-triangular integer
+linear transformation of $w_0,\ldots,w_{h-1}$ with diagonal entries one.
+The inverse matrix also has integer entries. Thus an integer clears the
+denominators of the antidiagonal exactly when it clears all $w_m$.
+For $B$ and $U$ the seed denominators are $1,2,\ldots,h$.
+The final identification is the definition
+A139550$(r)=\operatorname{lcm}(1,\ldots,\lfloor r/2\rfloor)$~\cite{antidiagonals}.
+The empty antidiagonal $s=0$ gives one on both sides.
+\end{proof}
+
+\section{Coverage and formal statements}
+The following table maps the source assertions to their conclusions.
+``Proved'' denotes the written proofs above; Gao's earlier proof is credited
+separately. A194767's second-kind array is covered through its stated
+first-kind correspondence.
+\begingroup\small
+\begin{longtable}{@{}p{0.38\linewidth}p{0.19\linewidth}p{0.34\linewidth}@{}}
+\toprule
+Source item & Coverage & Location\\
+\midrule
+\endhead
+A189733: denominator conjecture & Prior proof cited; proved & Theorem~\ref{thm:main}; Gao~\cite{gao}.\\
+A189733: first row, period of numerators & Proved & \eqref{eq:row}; Corollary~\ref{cor:siblings}.\\
+A189733: recurrence, Barker generating function & Prior proof cited; proved & Corollary~\ref{cor:siblings}; Gao~\cite{gao}.\\
+A189733: displayed array and inverse binomial transform & Proved & Corollaries~\ref{cor:binomial}--\ref{cor:allentries}.\\
+A278718: period, generating function, five-term recurrence, floor formula & Proved & Corollaries~\ref{cor:siblings}, \ref{cor:numerators}.\\
+A267068: integrality, Barker's two conjectures & Proved & Corollary~\ref{cor:quotients}.\\
+A267068: all three sequence identifications & Proved & Equation~\eqref{eq:quotientlinks}.\\
+A267068: zero diagonal (A000004) & Proved & Definition~\eqref{eq:triangle}.\\
+A194767: displayed array, first three diagonals & Proved & Section 4; Corollary~\ref{cor:allentries}.\\
+A194767: denominator residues, generating function, two sequence identifications & Proved & Corollary~\ref{cor:secondkind}.\\
+A194767: fourth-diagonal numerator & Refuted and corrected & \eqref{eq:indexcorrection}; use A146535$(m+1)$.\\
+A194767: reciprocal sum & Proved & Corollary~\ref{cor:reciprocals}.\\
+A189731/A242926: Lucas row, binomial transform, odd bisections and antidiagonal sum & Proved & Corollary~\ref{cor:unsigned}.\\
+A242926: odd denominator index & Refuted and corrected & Use A175386$(r+1)$ in Corollary~\ref{cor:unsigned}.\\
+A242926: positive integer entries only at prime ranks & Refuted and corrected & Corollary~\ref{cor:primecounterexample}; rank 705.\\
+A242926: antidiagonal denominator lcm & Proved & Corollary~\ref{cor:antidiagonallcm}.\\
+A242926: informal divisor and super-autosequence descriptions & Not covered & No precise identity specified here.\\
+\bottomrule
+\end{longtable}
+\endgroup
+The pinned source~\cite{lean},
+\href{https://github.com/the-omega-institute/trureturing/blob/20b69217fd7c02cbb8668d939dfa29ecc12a9716/D5/S1/Recurrence/Residue/OEISA189733DenominatorConjecture.lean}{\texttt{OEISA189733DenominatorConjecture.lean}}~\cite{lean}
+uses the namespace
+\begin{quote}\small\ttfamily
+D5.S1.Recurrence.Residue.\\
+OEISA189733DenominatorConjecture
+\end{quote}
+Its public theorem \texttt{result} proves precisely the six reduced
+denominators in~\eqref{eq:den}, for every natural number $k$.
+The file's private theorem \texttt{triangle\_six} proves the six rational
+values in~\eqref{eq:row}, using polynomial moments and a six-periodic
+companion recurrence. The formal definition \texttt{triangle m d} is $T(m,d)$
+in~\eqref{eq:triangle}, and \texttt{a n} is its reduced denominator at $m=0$.
+The generating-function derivation and Corollaries~\ref{cor:siblings}--\ref{cor:antidiagonallcm}
+are written proofs. The accompanying exact-arithmetic
+checker compares the defining recurrence with the formulas for
+$0\le n\le240$; it also checks the numerator, denominator generating
+function, binomial-transform identities, linked numerator and quotient
+formulas, second-kind diagonal and denominator formulas, source terms,
+the unsigned array and modular certificate, and the all-entry sum on the ranges specified in
+\texttt{verification.json}. Those finite checks support the stated formulas;
+the proofs above establish the universal statements.
+
+\begin{thebibliography}{99}
+\bibitem{curtz}
+P. Curtz, \emph{A189733}, The On-Line Encyclopedia of Integer Sequences,
+Revision 12, COMMENTS, May 23, 2011 (original conjecture);
+revision 13, FORMULA, June 4, 2011; revision 36, November 1, 2026.
+\url{https://oeis.org/A189733}.
+Historical edits: \url{https://oeis.org/history?seq=A189733&start=19}.
+\bibitem{gao}
+B. Gao, Generating-function proof of the A189733 denominator formulas,
+OEIS A189733 history, revision 30, posted September 23, 2026
+(contribution dated September 22, 2026).
+\url{https://oeis.org/history?seq=A189733}.
+\bibitem{quotients}
+P. Curtz, \emph{A267068}, OEIS, January 10, 2016; revision 11,
+January 19, 2016. FORMULA includes C. Barker's conjectures.
+\url{https://oeis.org/A267068}.
+\bibitem{numerators}
+J.-F. Alcover and P. Curtz, \emph{A278718}, OEIS, November 30, 2016;
+revision 26, September 12, 2026. FORMULA includes W. I. Hurt's identities.
+\url{https://oeis.org/A278718}.
+\bibitem{auxiliary}
+OEIS, \emph{A047238}, \emph{A047245}, \emph{A052901}, and \emph{A130196},
+NAME and OFFSET fields, accessed November 3, 2026.
+\url{https://oeis.org/A047238}; \url{https://oeis.org/A047245};
+\url{https://oeis.org/A052901}; \url{https://oeis.org/A130196}.
+\bibitem{secondkind}
+P. Curtz, \emph{A194767}, OEIS, September 2, 2011, NAME and FORMULA.
+\url{https://oeis.org/A194767}.
+\bibitem{autosequence}
+OEIS Wiki, \emph{Autosequence}, ``Two kinds of autosequence'' and the
+first-kind/second-kind correspondence, accessed November 3, 2026.
+\url{https://oeis.org/wiki/Autosequence}.
+\bibitem{secondauxiliary}
+OEIS, \emph{A026741}, \emph{A045896}, \emph{A051176}, \emph{A146535},
+and \emph{A306368}, NAME and OFFSET fields, accessed November 3, 2026.
+\url{https://oeis.org/A026741}; \url{https://oeis.org/A045896};
+\url{https://oeis.org/A051176}; \url{https://oeis.org/A146535};
+\url{https://oeis.org/A306368}.
+\bibitem{unsigned}
+P. Curtz, \emph{A189731}, May 23, 2011, and \emph{A242926}, May 18, 2014,
+OEIS, COMMENTS, FORMULA and programs, accessed November 3, 2026.
+\url{https://oeis.org/A189731}; \url{https://oeis.org/A242926}.
+\bibitem{unsignedbisections}
+V. Shevelev and Z. Seidov, \emph{A175385} and \emph{A175386}, OEIS,
+April 24, 2010, NAME and OFFSET.
+\url{https://oeis.org/A175385}; \url{https://oeis.org/A175386}.
+\bibitem{pseudoprimes}
+OEIS, \emph{A005845}, Lucas pseudoprimes: composite $n$ for which
+$L_n\equiv1\pmod n$, NAME and DATA, accessed November 3, 2026.
+\url{https://oeis.org/A005845}.
+\bibitem{antidiagonals}
+OEIS, \emph{A139550}, NAME and OFFSET, accessed November 3, 2026.
+\url{https://oeis.org/A139550}.
+\bibitem{lean}
+\emph{OEISA189733DenominatorConjecture.lean},\\
+revision \texttt{20b69217fd7c02cbb8668d939dfa29ecc12a9716},
+declarations \texttt{result} and \texttt{triangle\_six}; linked above.
+\end{thebibliography}
+\medskip
+\noindent\small Copyright \copyright\ 2026 Haobo Ma and Wenlin Zhang.
+Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International (CC BY 4.0)}.
+\end{document}

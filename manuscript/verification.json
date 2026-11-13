@@ -1,0 +1,260 @@
+{
+  "all_entry_binomial_sum": {
+    "comparisons": 880,
+    "distances": [
+      1,
+      80
+    ],
+    "rows": [
+      0,
+      10
+    ]
+  },
+  "antidiagonal_denominator_lcm": {
+    "antidiagonals": [
+      0,
+      80
+    ],
+    "arrays": [
+      "alternating",
+      "unsigned"
+    ],
+    "comparisons": 162
+  },
+  "arithmetic": "exact integers and fractions.Fraction",
+  "binomial_transform": {
+    "comparisons": 41,
+    "indices": [
+      0,
+      40
+    ]
+  },
+  "companion_derivative_and_endpoint": {
+    "indices": [
+      0,
+      80
+    ]
+  },
+  "composite_integer_rank": {
+    "factorization": [
+      3,
+      5,
+      47
+    ],
+    "lucas_remainder": 1,
+    "matrix_705_residue": [
+      283,
+      565,
+      565,
+      423
+    ],
+    "matrix_power_residues": {
+      "128": [
+        424,
+        141,
+        141,
+        283
+      ],
+      "512": [
+        283,
+        564,
+        564,
+        424
+      ],
+      "64": [
+        565,
+        423,
+        423,
+        142
+      ]
+    },
+    "rank": 705,
+    "zero_based_index": 704
+  },
+  "corrected_second_kind_numerator": {
+    "counterexample_to_unshifted_formula": {
+      "index": 2,
+      "unshifted_numerator": 1,
+      "value": "-5/12"
+    },
+    "indices": [
+      0,
+      80
+    ]
+  },
+  "denominator_generating_function": {
+    "coefficients": [
+      0,
+      240
+    ]
+  },
+  "denominator_recurrence": {
+    "comparisons": 229,
+    "indices": [
+      12,
+      240
+    ]
+  },
+  "first_row": {
+    "comparisons": 241,
+    "indices": [
+      0,
+      240
+    ]
+  },
+  "logarithmic_coefficients": {
+    "indices": [
+      0,
+      240
+    ]
+  },
+  "numerator_floor_and_generating_function": {
+    "indices": [
+      0,
+      240
+    ]
+  },
+  "numerator_order_five_recurrence": {
+    "indices": [
+      5,
+      240
+    ]
+  },
+  "polynomial_moments": {
+    "comparisons": 891,
+    "indices": [
+      0,
+      80
+    ],
+    "rows": [
+      0,
+      10
+    ]
+  },
+  "published_source_terms": {
+    "A026741": 77,
+    "A045896": 53,
+    "A047238": 55,
+    "A047245": 63,
+    "A051176": 68,
+    "A052901": 105,
+    "A130196": 105,
+    "A139550": 40,
+    "A146535": 68,
+    "A175385": 27,
+    "A175386": 71,
+    "A189731": 38,
+    "A189733": 81,
+    "A194767": 60,
+    "A242926": 61,
+    "A267068": 70,
+    "A278718": 101,
+    "A306368": 57
+  },
+  "quotient_recurrence": {
+    "indices": [
+      12,
+      240
+    ]
+  },
+  "quotient_sequence_identifications": {
+    "comparisons": 240,
+    "indices": [
+      0,
+      79
+    ]
+  },
+  "quotient_tuple_integrality_and_generating_function": {
+    "indices": [
+      0,
+      240
+    ]
+  },
+  "reduced_denominators": {
+    "comparisons": 241,
+    "indices": [
+      0,
+      240
+    ]
+  },
+  "reduced_numerators": {
+    "indices": [
+      0,
+      240
+    ],
+    "period_block": [
+      0,
+      1,
+      1,
+      1,
+      0,
+      -1
+    ]
+  },
+  "scope": "Finite exact checks of the stated ranges; universal proofs are in note.tex.",
+  "second_kind_first_four_diagonals": {
+    "comparisons": 324,
+    "indices": [
+      0,
+      80
+    ]
+  },
+  "second_kind_residues_generating_function_and_aliases": {
+    "indices": [
+      0,
+      240
+    ]
+  },
+  "square_difference_identity": {
+    "columns": [
+      0,
+      39
+    ],
+    "rows": [
+      0,
+      39
+    ]
+  },
+  "square_reflection": {
+    "columns": [
+      0,
+      40
+    ],
+    "comparisons": 1681,
+    "rows": [
+      0,
+      40
+    ]
+  },
+  "status": "pass",
+  "unsigned_antidiagonal": {
+    "indices": [
+      0,
+      119
+    ]
+  },
+  "unsigned_binomial_transform": {
+    "indices": [
+      0,
+      40
+    ]
+  },
+  "unsigned_lucas_formula": {
+    "indices": [
+      0,
+      240
+    ]
+  },
+  "unsigned_odd_bisections": {
+    "comparisons": 160,
+    "corrected_denominator_counterexample": {
+      "actual": 2,
+      "index": 3,
+      "unshifted": 1
+    },
+    "indices": [
+      0,
+      79
+    ]
+  }
+}

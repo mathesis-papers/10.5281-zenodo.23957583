@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, cite it."
+title: "Curtz's denominator conjecture: OEIS A189733, revision 12, COMMENTS, May 23, 2011"
+authors:
+  - name: "Haobo Ma"
+  - name: "Wenlin Zhang"
+date-released: "2026-11-05"
+version: "2"
+url: "https://mathesis-omega-research.apps.chrono-ai.fun/papers/oeis-a189733-curtz-denominator-conjecture?version=2"
+doi: "10.5281/zenodo.23957584"
+license: "CC-BY-4.0"

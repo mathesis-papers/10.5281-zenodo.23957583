@@ -1,0 +1,62 @@
+{
+  "files": {
+    "pdf": {
+      "bytes": 103261,
+      "matches_public": null,
+      "path": "paper.pdf",
+      "public_sha256": null,
+      "sha256": "8c85d4b11398ba174f0332ccdc1555d60eea63a55d2dd7cac23ee31e70730521"
+    },
+    "source": {
+      "bytes": 22046,
+      "matches_public": null,
+      "path": "manuscript/",
+      "public_sha256": null,
+      "sha256": "60c7720a75ab65f75bf8a823a7df84e59e8d78e57680ddeca38ebfbeea1e9d7d"
+    }
+  },
+  "source_identity": "Mathesis public projection",
+  "work": {
+    "abstract_text": "We prove Paul Curtz's six-residue denominator conjecture in OEIS A189733, revision 12, COMMENTS (May 23, 2011), now in revision 36, FORMULA, with its convention that zero has denominator one. Following Gao's earlier generating-function proof, we derive exact values of the first row of the defining rational array. These values also prove the six-periodic numerator assertion, the denominator recurrence, and Barker's empirical generating function in the same entry. The same formulas settle Barker's recurrence and generating-function conjectures in A267068 and give the numerator identities in A278718. We also prove the full-array reflection and binomial-transform identity. The corresponding second-kind array yields A194767's denominator formulas and reciprocal sum, and corrects an index in its fourth-diagonal numerator identity. For the unsigned-seed array in A189731 and A242926, the same argument gives a Lucas-number formula and refutes the asserted prime-only integer ranks at the composite 705. An integer triangular transformation determines antidiagonal denominator lcms for arbitrary rational seeds.",
+    "authors": [
+      {
+        "affiliation": "ChronoAI Pte Ltd, Singapore",
+        "name": "Haobo Ma"
+      },
+      {
+        "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore",
+        "name": "Wenlin Zhang"
+      }
+    ],
+    "concept_doi": "10.5281/zenodo.23957583",
+    "current_version": 2,
+    "doi": "10.5281/zenodo.23957584",
+    "lean_source": {
+      "revision": "20b69217fd7c02cbb8668d939dfa29ecc12a9716",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/20b69217fd7c02cbb8668d939dfa29ecc12a9716/D5/S1/Recurrence/Residue/OEISA189733DenominatorConjecture.lean"
+    },
+    "license": "CC-BY-4.0",
+    "msc": [],
+    "pdf": {
+      "url": "/api/v1/collected-papers/oeis-a189733-curtz-denominator-conjecture/files/pdf?version=2"
+    },
+    "previous_version": null,
+    "publication": "public",
+    "published_on": "2026-11-05T08:03:42.470885317Z",
+    "record": "oeis-a189733-curtz-denominator-conjecture",
+    "repository_name": "6aec385ebbe9030500bdf621",
+    "source": {
+      "url": "/api/v1/collected-papers/oeis-a189733-curtz-denominator-conjecture/files/source?version=2"
+    },
+    "title": "Curtz's denominator conjecture: OEIS A189733, revision 12, COMMENTS, May 23, 2011",
+    "versions": [
+      {
+        "previous_version": null,
+        "published_on": "2026-11-05T08:03:42.470885317Z",
+        "revision": "2",
+        "version": 2
+      }
+    ],
+    "work": "oeis-a189733-curtz-denominator-conjecture"
+  }
+}

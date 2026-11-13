@@ -1,0 +1,23 @@
+{
+  "id": "oeis-a189733-curtz-denominator-conjecture",
+  "revision": 2,
+  "problem_ids": [
+    "oeis-a189733-curtz-denominator-conjecture"
+  ],
+  "topic": "Curtz's six-residue reduced-denominator conjecture, OEIS A189733 revision 12 COMMENTS, May 23, 2011; now revision 36 FORMULA",
+  "title": "Curtz's denominator conjecture: OEIS A189733, revision 12, COMMENTS, May 23, 2011",
+  "creators": [
+    {
+      "name": "Ma, Haobo",
+      "affiliation": "ChronoAI Pte Ltd, Singapore"
+    },
+    {
+      "name": "Zhang, Wenlin",
+      "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore"
+    }
+  ],
+  "abstract": "We prove Paul Curtz's six-residue denominator conjecture in OEIS A189733, revision 12, COMMENTS (May 23, 2011), now in revision 36, FORMULA, with its convention that zero has denominator one. Following Gao's earlier generating-function proof, we derive exact values of the first row of the defining rational array. These values also prove the six-periodic numerator assertion, the denominator recurrence, and Barker's empirical generating function in the same entry. The same formulas settle Barker's recurrence and generating-function conjectures in A267068 and give the numerator identities in A278718. We also prove the full-array reflection and binomial-transform identity. The corresponding second-kind array yields A194767's denominator formulas and reciprocal sum, and corrects an index in its fourth-diagonal numerator identity. For the unsigned-seed array in A189731 and A242926, the same argument gives a Lucas-number formula and refutes the asserted prime-only integer ranks at the composite 705. An integer triangular transformation determines antidiagonal denominator lcms for arbitrary rational seeds.",
+  "summary": "For every k >= 0, the reduced denominators are (1, 3k+1, 2k+1, 3k+2, 1, 6k+6), following Gao's earlier proof. Written corollaries establish the full array, all numerator identities in A278718, both Barker conjectures and the three sequence identifications in A267068, and A194767's second-kind denominator formulas and reciprocal sum. Its fourth-diagonal numerator uses A146535(m+1). The unsigned array has u_n=(L_(n+1)-1)/(n+1); A242926's odd-denominator identity uses A175386(r+1), and the composite rank 705 refutes its prime-only integer-rank assertion. The pinned Lean declarations result and triangle_six cover the denominator and rational first-row tuples respectively. Additional corollaries have written proofs, with an explicit finite modular certificate for rank 705. A denominator-lcm invariant for arbitrary rational seeds proves the antidiagonal identity for both zero-diagonal arrays.",
+  "license": "cc-by-4.0",
+  "evidence_url": "https://github.com/the-omega-institute/trureturing/blob/20b69217fd7c02cbb8668d939dfa29ecc12a9716/D5/S1/Recurrence/Residue/OEISA189733DenominatorConjecture.lean"
+}

@@ -2,12 +2,12 @@
   "schema": "mathesis.materials.v1",
   "work": "oeis-a189733-curtz-denominator-conjecture",
   "version": 2,
-  "repository_url": "https://github.com/mathesis-papers/6aec385ebbe9030500bdf621",
-  "site_url": "https://papers.trureturing.org/6aec385ebbe9030500bdf621/",
+  "repository_url": "https://github.com/mathesis-papers/10.5281-zenodo.23957583",
+  "site_url": "https://papers.trureturing.org/10.5281-zenodo.23957583/",
   "doi": "10.5281/zenodo.23957584",
   "reading": {
-    "en": "https://papers.trureturing.org/6aec385ebbe9030500bdf621/en/",
-    "zh": "https://papers.trureturing.org/6aec385ebbe9030500bdf621/zh/"
+    "en": "https://papers.trureturing.org/10.5281-zenodo.23957583/en/",
+    "zh": "https://papers.trureturing.org/10.5281-zenodo.23957583/zh/"
   },
   "slides": [],
   "visualizations": []

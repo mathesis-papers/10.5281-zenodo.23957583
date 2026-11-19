@@ -2,16 +2,16 @@
   "files": {
     "pdf": {
       "bytes": 103261,
-      "matches_public": null,
+      "matches_public": true,
       "path": "paper.pdf",
-      "public_sha256": null,
+      "public_sha256": "8c85d4b11398ba174f0332ccdc1555d60eea63a55d2dd7cac23ee31e70730521",
       "sha256": "8c85d4b11398ba174f0332ccdc1555d60eea63a55d2dd7cac23ee31e70730521"
     },
     "source": {
       "bytes": 22046,
-      "matches_public": null,
+      "matches_public": true,
       "path": "source.archive",
-      "public_sha256": null,
+      "public_sha256": "60c7720a75ab65f75bf8a823a7df84e59e8d78e57680ddeca38ebfbeea1e9d7d",
       "sha256": "60c7720a75ab65f75bf8a823a7df84e59e8d78e57680ddeca38ebfbeea1e9d7d"
     }
   },
@@ -38,6 +38,8 @@
     "license": "CC-BY-4.0",
     "msc": [],
     "pdf": {
+      "bytes": 103261,
+      "sha256": "8c85d4b11398ba174f0332ccdc1555d60eea63a55d2dd7cac23ee31e70730521",
       "url": "/api/v1/collected-papers/oeis-a189733-curtz-denominator-conjecture/files/pdf?version=2"
     },
     "previous_version": null,
@@ -46,6 +48,8 @@
     "record": "oeis-a189733-curtz-denominator-conjecture",
     "repository_name": "10.5281-zenodo.23957583",
     "source": {
+      "bytes": 22046,
+      "sha256": "60c7720a75ab65f75bf8a823a7df84e59e8d78e57680ddeca38ebfbeea1e9d7d",
       "url": "/api/v1/collected-papers/oeis-a189733-curtz-denominator-conjecture/files/source?version=2"
     },
     "title": "Curtz's denominator conjecture: OEIS A189733, revision 12, COMMENTS, May 23, 2011",
